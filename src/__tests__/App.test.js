@@ -4,7 +4,6 @@ import { shallow } from 'enzyme';
 
 // components
 import App from '../containers/App';
-import Nav from '../components/Nav';
 import SearchContainer from '../containers/SearchContainer';
 import ResultsContainer from '../containers/ResultsContainer';
 
@@ -23,11 +22,6 @@ describe('Testing main App container', () => {
 
   it('should render a child Header component', () => {
     const wrapper = shallow(<Header />);
-    expect(wrapper.exists()).toBe(true);
-  });
-
-  it('should render a child Nav component', () => {
-    const wrapper = shallow(<Nav />);
     expect(wrapper.exists()).toBe(true);
   });
 

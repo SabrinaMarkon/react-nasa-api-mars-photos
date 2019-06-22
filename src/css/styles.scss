@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Orbitron&display=swap');
 /* Declare some variables */
 $base-color: #d34182;
 $secondary-color: #fff;
@@ -7,6 +7,7 @@ body {
   padding: 0;
   margin: 0;
   background-color: #000;
+  background-image: url('../images/marsbackground.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -14,6 +15,38 @@ body {
   color: $secondary-color;
   font-family: 'Roboto', sans-serif;
 }
+header {
+  margin-bottom: 200px;
+  h1>span{
+    top: 5%;
+    position: absolute;
+    transition: translateY(-50%);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-style: italic;
+    font-size: 4em;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    background: linear-gradient(#262626,#fff,#262626);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  h1>span:nth-child(1)
+  {
+    z-index: 2;
+  }
+  h1>span:nth-child(2)
+  {
+    z-index: 1;
+    text-shadow: 1px 1px 0 #262626, 2px 2px 0 #262626, 3px 3px 0 #262626,
+    4px 4px 0 #262626, 5px 5px 0 #262626, 1px 1px 0 #262626, 6px 20px 20px rgba(0,0,0,1),
+    -1px -1px 0 #fff;
+  }
+}
+
 .grid {
   display: grid;
   margin: auto;
@@ -56,7 +89,6 @@ body {
 }
 .fixed-bg {
   background-position: center;
-  background-image: url('../images/spaceship.jpg');
   background-repeat: repeat;
   background-attachment: fixed; 
   background-color: #000;
@@ -66,51 +98,51 @@ body {
   -webkit-box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
   box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
 }
-video {
-  display: block; 
-}
-.ParallaxVideo {
-  min-height: 335px;
-  padding-top: 110px; 
-  /* -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); */
-  /* clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); */
-}
-.ParallaxVideo video {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  z-index: -100;
-  -ms-transform: translateX(-50%) translateY(-50%);
-  -moz-transform: translateX(-50%) translateY(-50%);
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
-  background: url("../images/Asteroids.jpg") no-repeat;
-  background-size: cover;
-}
-.ParallaxVideo h1 {
-  color: $secondary-color;
-  font-size: 8rem;
-  line-height: 1.1;
-  text-align: center;
-  opacity: 0.9;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  text-shadow: 2px 2px 2px #000;
-  margin: 0; 
-}
-.ParallaxVideo .overlay {
-  position: fixed;
-  z-index: -99;
-  width: 100%;
-  text-align: center;
-  margin-top: 40px; 
-  color: $secondary-color;
-  font-family: 'Roboto', sans-serif;
-}
+// video {
+//   display: block; 
+// }
+// .ParallaxVideo {
+//   min-height: 335px;
+//   padding-top: 110px; 
+//   /* -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); */
+//   /* clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); */
+// }
+// .ParallaxVideo video {
+//   position: fixed;
+//   top: 50%;
+//   left: 50%;
+//   min-width: 100%;
+//   min-height: 100%;
+//   width: auto;
+//   height: auto;
+//   z-index: -100;
+//   -ms-transform: translateX(-50%) translateY(-50%);
+//   -moz-transform: translateX(-50%) translateY(-50%);
+//   -webkit-transform: translateX(-50%) translateY(-50%);
+//   transform: translateX(-50%) translateY(-50%);
+//   background: url("../images/Asteroids.jpg") no-repeat;
+//   background-size: cover;
+// }
+// .ParallaxVideo h1 {
+//   color: $secondary-color;
+//   font-size: 8rem;
+//   line-height: 1.1;
+//   text-align: center;
+//   opacity: 0.9;
+//   font-family: 'Roboto', sans-serif;
+//   font-weight: 400;
+//   text-shadow: 2px 2px 2px #000;
+//   margin: 0; 
+// }
+// .ParallaxVideo .overlay {
+//   position: fixed;
+//   z-index: -99;
+//   width: 100%;
+//   text-align: center;
+//   margin-top: 40px; 
+//   color: $secondary-color;
+//   font-family: 'Roboto', sans-serif;
+// }
 .center-align {
   text-align: center;
 }
@@ -131,12 +163,6 @@ video {
 }
 .pt-3 {
   padding-top: 3rem;
-}
-footer {
-  margin-top: 10px;
-  left: 0;
-  right: 0;
-  bottom: 0;
 }
 footer {
   margin-top: 10px;

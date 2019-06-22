@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Header from '../components/Header';
-import Nav from '../components/Nav';
 import UserMessage from '../components/UserMessage';
 import SearchContainer from '../containers/SearchContainer';
 import ResultsContainer from '../containers/ResultsContainer';
@@ -130,9 +129,8 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <Nav />
         <Header />
-        <div className="fixed-bg">
+        <div>
           {this.state.errorMessage 
             ? <>
               <UserMessage userMessage={this.state.errorMessage} />
@@ -143,7 +141,7 @@ export default class App extends Component {
               <ResultsContainer searchResults={this.state.searchResults} />
               </>
           }
-          <Pagination totalRecords={1000} pageLimit={PAGE_LIMIT} pageNeighbours={2} onPageChanged={this.onPageChanged} />
+          {/* <Pagination totalRecords={1000} pageLimit={PAGE_LIMIT} pageNeighbours={2} onPageChanged={this.onPageChanged} /> */}
           <Footer />          
         </div>
       </>
