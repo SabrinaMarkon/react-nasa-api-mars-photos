@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack'); // access .env variables.
+const webpack = require('webpack'); // to include webpack's built-in plugins.
 
 const config = {
   mode: 'production',     // set mode option, 'development' or 'production'
@@ -48,7 +50,8 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
     template: './src/index.html'
-    })
+    }),
+    new Dotenv()
     ]
 };
 

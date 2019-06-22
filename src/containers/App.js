@@ -31,6 +31,7 @@ export default class App extends Component {
   componentDidMount() {
     this._isMounted = true;
     let API_URL = MAIN_API_URL;
+    console.log(API_URL + ' asfddfadsfasfadsfa');
     axios.get(API_URL)
     .then(res => {
       /* Add a check in the .then() handler so this.setState is not called if the component has been unmounted:
