@@ -1,9 +1,56 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../containers/App';
+import { shallow } from 'enzyme';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+// components
+import App from '../containers/App';
+import Nav from '../components/Nav';
+import SearchContainer from '../containers/SearchContainer';
+import ResultsContainer from '../containers/ResultsContainer';
+
+function setup() {
+  const wrapper = shallow(<App />);
+  //return { wrapper, props }
+  return wrapper;
+}
+
+describe('Testing main App container', () => {
+  it('renders the main App component', () => {
+    const fragment = document.createElement('Fragment');
+    ReactDOM.render(<App />, fragment);
+    ReactDOM.unmountComponentAtNode(fragment);
+  });
+
+  it('should render a child Header component', () => {
+    const wrapper = shallow(<Header />);
+    expect(wrapper.exists()).toBe(true);
+  });
+
+  it('should render a child Nav component', () => {
+    const wrapper = shallow(<Nav />);
+    expect(wrapper.exists()).toBe(true);
+  });
+
+  it('should render a child SearchContainer component', () => {
+    const wrapper = shallow(<SearchContainer />);
+    expect(wrapper.exists()).toBe(true);
+  });
+
+  it('should render a child ResultsContainer component', () => {
+    const wrapper = shallow(<ResultsContainer />);
+    expect(wrapper.exists()).toBe(true);
+  });
+
+  it('should render a child Footer component', () => {
+    const wrapper = shallow(<Footer />);
+    expect(wrapper.exists()).toBe(true);
+  });
+
+  it('it should match the App snapshot', () => {
+    const wrapper = setup();
+    console.log(wrapper);
+    expect(wrapper).toMatchSnapshot();
+  });
 });
+
+

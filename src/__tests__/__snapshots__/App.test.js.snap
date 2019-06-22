@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing main App container it should match the App snapshot 1`] = `
+<Fragment>
+  <Nav />
+  <Header />
+  <SearchContainer
+    doSearch={[Function]}
+  />
+  <ResultsContainer />
+  <Footer />
+</Fragment>
+`;

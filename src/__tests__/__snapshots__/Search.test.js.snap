@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing search form component should match the Search form snapshot 1`] = `
+<form>
+  <input
+    onChange={[Function]}
+    type="text"
+    value=""
+  />
+  <button
+    onClick={[Function]}
+    type="button"
+  >
+    Search!
+  </button>
+</form>
+`;

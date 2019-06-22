@@ -1,33 +1,301 @@
-.App {
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+/* Declare some variables */
+$base-color: #d34182;
+$secondary-color: #fff;
+$light-background: lighten($base-color, 12.5%);
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #000;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  color: $secondary-color;
+  font-family: 'Roboto', sans-serif;
+}
+.grid {
+  display: grid;
+  margin: auto;
+  width: 75%;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(auto-fill, 1fr);
+  grid-gap: 1px;
+  min-height: 0;
+  min-width: 0;
+}
+.grid > .grid-item {
+  border: 1px solid $secondary-color;
+  padding: 10px;
+  overflow: hidden;
+  min-width: 0;
+}
+.grid-heading {
+  background: $base-color;
+  color: $secondary-color;
+}
+.form-input {
+  background: $base-color;
+  color: $secondary-color;
+  padding: 10px;
+  margin: 3px;
+  font-family: 'Roboto', sans-serif;
+}
+.user-message {
+  max-width: 400px;
+  background:#ba38cc;
+  color: $secondary-color;
+  border: 2px solid $secondary-color;
+  padding: 10px;
+  margin: auto;
+  position: relative;
+  top: 35px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif !important;
+}
+.fixed-bg {
+  background-position: center;
+  background-image: url('../images/spaceship.jpg');
+  background-repeat: repeat;
+  background-attachment: fixed; 
+  background-color: #000;
+  min-height: 928px;
+  margin-bottom: 4rem;
+  -moz-box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
+  -webkit-box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
+  box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
+}
+video {
+  display: block; 
+}
+.ParallaxVideo {
+  min-height: 335px;
+  padding-top: 110px; 
+  /* -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); */
+  /* clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); */
+}
+.ParallaxVideo video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background: url("../images/Asteroids.jpg") no-repeat;
+  background-size: cover;
+}
+.ParallaxVideo h1 {
+  color: $secondary-color;
+  font-size: 8rem;
+  line-height: 1.1;
+  text-align: center;
+  opacity: 0.9;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  text-shadow: 2px 2px 2px #000;
+  margin: 0; 
+}
+.ParallaxVideo .overlay {
+  position: fixed;
+  z-index: -99;
+  width: 100%;
+  text-align: center;
+  margin-top: 40px; 
+  color: $secondary-color;
+  font-family: 'Roboto', sans-serif;
+}
+.center-align {
   text-align: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.p-2 {
+  padding: 2rem;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.pb-2 {
+  padding-bottom: 2rem;
 }
-
-.App-link {
-  color: #61dafb;
+.pt-2 {
+  padding-top: 2rem;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.p-3 {
+  padding: 3rem;
+}
+.pb-3 {
+  padding-bottom: 3rem;
+}
+.pt-3 {
+  padding-top: 3rem;
+}
+footer {
+  margin-top: 10px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+footer {
+  margin-top: 10px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+#madewithlove {
+  font-size: 1.3rem !important;
+  font-weight: 900 !important;
+}
+#madewithlove-name {
+  font-family: 'Roboto', sans-serif !important;
+}
+#madewithlove-name, #madewithlove-heart {
+  text-shadow: 0 0 0;
+  color: $base-color;
+}
+#madewithlove-name:hover {
+  text-decoration: none;
+  color: $secondary-color;
+}
+#madewithlove-heart:hover {
+  text-shadow: 1px 1px 1px $secondary-color, -1px -1px 1px #414143;
+  color: $secondary-color; 
+}
+ul.pagination {
+  // margin-top: 50px;
+  margin-bottom: 50px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  li {
+    display: inline-block;
   }
-  to {
-    transform: rotate(360deg);
+  li.page-item.active {
+    a.page-link {
+      color: $secondary-color;
+      background-color: $base-color;
+      border-color: $base-color;
+    }
+  }
+  a.page-link {
+    padding: 0.75rem 1rem;
+    min-width: 3.5rem;
+    text-align: center;
+    box-shadow: none;
+    color: $secondary-color;
+    background: $base-color;
+    border-color:$secondary-color;
+    font-weight: 900;
+    font-size: 1rem;
+    text-decoration: none;
+    &:hover {
+      background-color: $light-background;
+    }
+  }
+}
+/* Media Queries */
+@media (min-width: 320px) {
+  /* smartphones, iPhone, portrait 480x320 phones */
+  .ParallaxVideo h1 {
+    font-size: 2rem; 
+  }
+  .grid > .grid-item {
+    font-size: 2vw;
+    padding: 1px;
+  }
+  .user-message {
+    font-size: 2vw;
+  }
+  .form-input {
+    font-size: 2vw;
+  }
+  #madewithlove {
+    font-size: 2vw;
+  }
+ }
+@media (min-width: 481px) {
+  /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+  .ParallaxVideo h1 {
+    font-size: 3rem; 
+  }
+  .grid > .grid-item {
+    font-size: 2vw;
+    padding: 1px;
+  }
+  .user-message {
+    font-size: 2vw;
+  }
+  .form-input {
+    font-size: 2vw;
+  }
+  #madewithlove {
+    font-size: 2vw;
+  }
+ }
+@media (min-width: 641px) {
+  /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+  .ParallaxVideo h1 {
+    font-size: 4rem; 
+  }
+  .grid > .grid-item {
+    font-size: 2vw;
+    padding: 2px;
+  }
+  .user-message {
+    font-size: 2vw;
+  }
+  .form-input {
+    font-size: 2vw;
+  }
+  #madewithlove {
+    font-size: 2vw;
+  }
+ }
+@media (min-width: 961px) {
+  /* tablet, landscape iPad, lo-res laptops ands desktops */
+  .ParallaxVideo h1 {
+    font-size: 5rem; 
+  }
+  .grid > .grid-item {
+    font-size: 1rem;
+    padding: 5px;
+  }
+  .user-message {
+    font-size: 1rem;
+  }
+  .form-input {
+    font-size: 1rem;
+  }
+  #madewithlove {
+    font-size: 1rem;
+  }
+ }
+@media (min-width: 1025px) {
+  /* big landscape tablets, laptops, and desktops */
+  .ParallaxVideo h1 {
+    font-size: 5rem; 
+  }
+  .grid > .grid-item {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}
+@media (min-width: 1281px) {
+  /* hi-res laptops and desktops */
+  .ParallaxVideo h1 {
+    font-size: 6rem;
+  }
+}
+@media (min-width: 1381px) {
+  /* hi-res laptops and desktops */
+  .ParallaxVideo h1 {
+    font-size: 7rem;
+  }
+}
+@media (min-width: 1500px) {
+  /* hi-res laptops and desktops */
+  .ParallaxVideo h1 {
+    font-size: 8rem;
   }
 }
