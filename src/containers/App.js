@@ -8,7 +8,9 @@ import Pagination from '../components/Pagination';
 import Footer from '../components/Footer';
 import axios from 'axios';
 
-const PAGE_LIMIT = 100;
+const PAGE_LIMIT = 25;
+const API_KEY = process.env.REACT_APP_NASA_API_KEY;
+const MAIN_API_URL = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=' + API_KEY;
 
 export default class App extends Component {
 
@@ -28,7 +30,7 @@ export default class App extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    let API_URL = 'https://data.nasa.gov/resource/gh4g-9sfh.json?$order=name&$limit=' + PAGE_LIMIT + '&$offset=0';
+    let API_URL = MAIN_API_URL;
     axios.get(API_URL)
     .then(res => {
       /* Add a check in the .then() handler so this.setState is not called if the component has been unmounted:
@@ -65,7 +67,8 @@ export default class App extends Component {
   }
 
   doSearch = (searchField, searchInput) => {
-    let API_URL = 'https://data.nasa.gov/resource/gh4g-9sfh.json?$order=name&$limit=' + PAGE_LIMIT + '&$offset=' + this.state.currentPage;
+    // let API_URL = 'https://data.nasa.gov/resource/gh4g-9sfh.json?$order=name&$limit=' + PAGE_LIMIT + '&$offset=' + this.state.currentPage;
+    let API_URL = MAIN_API_URL;
     if (searchInput) {
       // check for special characters.
       let originalSearchInput = searchInput;
@@ -78,7 +81,8 @@ export default class App extends Component {
         }); 
         return; 
       }
-      API_URL = 'https://data.nasa.gov/resource/gh4g-9sfh.json?$order=name&$limit=' + PAGE_LIMIT + '&$offset=' + this.state.currentPage + '&$where=upper(' + searchField + ')=upper(\'' + searchInput + '\')';
+      // API_URL = 'https://data.nasa.gov/resource/gh4g-9sfh.json?$order=name&$limit=' + PAGE_LIMIT + '&$offset=' + this.state.currentPage + '&$where=upper(' + searchField + ')=upper(\'' + searchInput + '\')';
+      API_URL = MAIN_API_URL;
     }
     axios.get(API_URL)
     .then(res => {
