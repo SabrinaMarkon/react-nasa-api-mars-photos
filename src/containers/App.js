@@ -8,9 +8,8 @@ import Footer from '../components/Footer';
 import ParticleContainer from '../containers/ParticleContainer';
 import axios from 'axios';
 
-const PAGE_LIMIT = 25;
 const API_KEY = process.env.REACT_APP_NASA_API_KEY;
-const MAIN_API_URL = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=' + API_KEY;
+const MAIN_API_URL = 'https://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos?api_key=' + API_KEY;
 
 export default class App extends Component {
 
@@ -26,20 +25,18 @@ export default class App extends Component {
     this.onPageChanged = this.onPageChanged.bind(this);
   }
 
-  // ?$select=count(*)
-
   componentDidMount() {
     this._isMounted = true;
-    let API_URL = MAIN_API_URL;
-    console.log(API_URL + ' asfddfadsfasfadsfa');
+    let API_URL = MAIN_API_URL + '&earth_date=2015-6-3&page=1';
     axios.get(API_URL)
     .then(res => {
+      // console.log(JSON.stringify(res)); // check object returned as JSON from Axios call.
       /* Add a check in the .then() handler so this.setState is not called if the component has been unmounted:
       That is, how should react 'react' when you call setState on a component that has already unmounted. The right way 
       to handle it would be to cancel the data fetching request if the component will be unmounted for some reason
       (like user navigating away) */
       if (this._isMounted) {
-        const searchResults = res.data;
+        const searchResults = res.data.photos;
         if (searchResults && searchResults.length) {
           this.setState({
             searchResults,
