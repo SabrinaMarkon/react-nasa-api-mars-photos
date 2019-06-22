@@ -129,8 +129,8 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <Header />
-        <div>
+        <div class="content">
+          <Header />
           {this.state.errorMessage 
             ? <>
               <UserMessage userMessage={this.state.errorMessage} />
@@ -141,9 +141,9 @@ export default class App extends Component {
               <ResultsContainer searchResults={this.state.searchResults} />
               </>
           }
-          {/* <Pagination totalRecords={1000} pageLimit={PAGE_LIMIT} pageNeighbours={2} onPageChanged={this.onPageChanged} /> */}
-          <Footer />          
+          {/* <Pagination totalRecords={1000} pageLimit={PAGE_LIMIT} pageNeighbours={2} onPageChanged={this.onPageChanged} /> */}        
         </div>
+        <Footer />
       </>
     )
   }

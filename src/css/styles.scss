@@ -1,9 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Orbitron&display=swap');
 /* Declare some variables */
-$base-color: #d34182;
+$base-color: #000;
 $secondary-color: #fff;
 $light-background: lighten($base-color, 12.5%);
+$title-font: 'Orbitron', sans-serif;
+
+html, body {
+  height: 100%;
+}
 body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Avoid the IE 10-11 `min-height` bug. */
   padding: 0;
   margin: 0;
   background-color: #000;
@@ -13,7 +21,10 @@ body {
   background-size: cover;
   background-attachment: fixed;
   color: $secondary-color;
-  font-family: 'Roboto', sans-serif;
+  font-family: $title-font
+}
+.content {
+  flex: 1 0 auto; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
 }
 header {
   margin-bottom: 200px;
@@ -25,9 +36,9 @@ header {
     padding: 0;
     width: 100%;
     text-align: center;
-    font-family: 'Orbitron', sans-serif;
+    font-family: $title-font;
     font-style: italic;
-    font-size: 4em;
+    // font-size: 4em;
     text-transform: uppercase;
     letter-spacing: 5px;
     background: linear-gradient(#262626,#fff,#262626);
@@ -58,7 +69,7 @@ header {
   min-width: 0;
 }
 .grid > .grid-item {
-  border: 1px solid $secondary-color;
+  border: 2px solid $secondary-color;
   padding: 10px;
   overflow: hidden;
   min-width: 0;
@@ -66,17 +77,19 @@ header {
 .grid-heading {
   background: $base-color;
   color: $secondary-color;
+  opacity: 0.8;
 }
 .form-input {
   background: $base-color;
   color: $secondary-color;
   padding: 10px;
   margin: 3px;
-  font-family: 'Roboto', sans-serif;
+  font-family: $title-font;
+  opacity: 0.8;
 }
 .user-message {
   max-width: 400px;
-  background:#ba38cc;
+  background:#d35941;
   color: $secondary-color;
   border: 2px solid $secondary-color;
   padding: 10px;
@@ -87,62 +100,6 @@ header {
   text-align: center;
   font-family: 'Roboto', sans-serif !important;
 }
-.fixed-bg {
-  background-position: center;
-  background-repeat: repeat;
-  background-attachment: fixed; 
-  background-color: #000;
-  min-height: 928px;
-  margin-bottom: 4rem;
-  -moz-box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
-  -webkit-box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
-  box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
-}
-// video {
-//   display: block; 
-// }
-// .ParallaxVideo {
-//   min-height: 335px;
-//   padding-top: 110px; 
-//   /* -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); */
-//   /* clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); */
-// }
-// .ParallaxVideo video {
-//   position: fixed;
-//   top: 50%;
-//   left: 50%;
-//   min-width: 100%;
-//   min-height: 100%;
-//   width: auto;
-//   height: auto;
-//   z-index: -100;
-//   -ms-transform: translateX(-50%) translateY(-50%);
-//   -moz-transform: translateX(-50%) translateY(-50%);
-//   -webkit-transform: translateX(-50%) translateY(-50%);
-//   transform: translateX(-50%) translateY(-50%);
-//   background: url("../images/Asteroids.jpg") no-repeat;
-//   background-size: cover;
-// }
-// .ParallaxVideo h1 {
-//   color: $secondary-color;
-//   font-size: 8rem;
-//   line-height: 1.1;
-//   text-align: center;
-//   opacity: 0.9;
-//   font-family: 'Roboto', sans-serif;
-//   font-weight: 400;
-//   text-shadow: 2px 2px 2px #000;
-//   margin: 0; 
-// }
-// .ParallaxVideo .overlay {
-//   position: fixed;
-//   z-index: -99;
-//   width: 100%;
-//   text-align: center;
-//   margin-top: 40px; 
-//   color: $secondary-color;
-//   font-family: 'Roboto', sans-serif;
-// }
 .center-align {
   text-align: center;
 }
@@ -165,21 +122,18 @@ header {
   padding-top: 3rem;
 }
 footer {
-  margin-top: 10px;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  flex-shrink: 0; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
 }
 #madewithlove {
   font-size: 1.3rem !important;
-  font-weight: 900 !important;
+  font-weight: 400 !important;
 }
 #madewithlove-name {
-  font-family: 'Roboto', sans-serif !important;
+  font-family: $title-font !important;
 }
 #madewithlove-name, #madewithlove-heart {
   text-shadow: 0 0 0;
-  color: $base-color;
+  color: #ffbd80;
 }
 #madewithlove-name:hover {
   text-decoration: none;
@@ -223,8 +177,11 @@ ul.pagination {
 /* Media Queries */
 @media (min-width: 320px) {
   /* smartphones, iPhone, portrait 480x320 phones */
-  .ParallaxVideo h1 {
+  h1 {
     font-size: 2rem; 
+  }
+  header {
+    margin-bottom: 80px;
   }
   .grid > .grid-item {
     font-size: 2vw;
@@ -237,14 +194,11 @@ ul.pagination {
     font-size: 2vw;
   }
   #madewithlove {
-    font-size: 2vw;
+    font-size: 1.0rem !important;
   }
  }
 @media (min-width: 481px) {
   /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
-  .ParallaxVideo h1 {
-    font-size: 3rem; 
-  }
   .grid > .grid-item {
     font-size: 2vw;
     padding: 1px;
@@ -256,13 +210,16 @@ ul.pagination {
     font-size: 2vw;
   }
   #madewithlove {
-    font-size: 2vw;
+    font-size: 1.1rem !important;
   }
  }
 @media (min-width: 641px) {
   /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
-  .ParallaxVideo h1 {
-    font-size: 4rem; 
+  h1 {
+    font-size: 3rem; 
+  }
+  header {
+    margin-bottom: 110px;
   }
   .grid > .grid-item {
     font-size: 2vw;
@@ -275,13 +232,16 @@ ul.pagination {
     font-size: 2vw;
   }
   #madewithlove {
-    font-size: 2vw;
+    font-size: 1.2rem !important;
   }
  }
 @media (min-width: 961px) {
   /* tablet, landscape iPad, lo-res laptops ands desktops */
-  .ParallaxVideo h1 {
-    font-size: 5rem; 
+  h1 {
+    font-size: 4rem; 
+  }
+  header {
+    margin-bottom: 130px;
   }
   .grid > .grid-item {
     font-size: 1rem;
@@ -294,13 +254,16 @@ ul.pagination {
     font-size: 1rem;
   }
   #madewithlove {
-    font-size: 1rem;
+    font-size: 1.3rem !important;
   }
  }
 @media (min-width: 1025px) {
   /* big landscape tablets, laptops, and desktops */
-  .ParallaxVideo h1 {
+  h1 {
     font-size: 5rem; 
+  }
+  header {
+    margin-bottom: 160px;
   }
   .grid > .grid-item {
     font-size: 1rem;
@@ -309,19 +272,23 @@ ul.pagination {
 }
 @media (min-width: 1281px) {
   /* hi-res laptops and desktops */
-  .ParallaxVideo h1 {
-    font-size: 6rem;
-  }
+
 }
 @media (min-width: 1381px) {
   /* hi-res laptops and desktops */
-  .ParallaxVideo h1 {
-    font-size: 7rem;
+  h1 {
+    font-size: 6rem;
+  }
+  header {
+    margin-bottom: 180px;
   }
 }
 @media (min-width: 1500px) {
   /* hi-res laptops and desktops */
-  .ParallaxVideo h1 {
-    font-size: 8rem;
+  h1 {
+    font-size: 7rem;
+  }
+  header {
+    margin-bottom: 200px;
   }
 }
