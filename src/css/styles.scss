@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Orbitron&display=swap');
-/* Declare some variables */
+
 $base-color: #000;
 $secondary-color: #fff;
 $light-background: lighten($base-color, 12.5%);
 $title-font: 'Orbitron', sans-serif;
+$accessory-color: #ffbd80;
 
 html, body {
   height: 100%;
@@ -57,7 +58,6 @@ header {
     -1px -1px 0 #fff;
   }
 }
-
 .grid {
   display: grid;
   margin: auto;
@@ -121,9 +121,42 @@ header {
 .pt-3 {
   padding-top: 3rem;
 }
-footer {
-  flex-shrink: 0; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
+// footer {
+//   width: 100%;
+//   position: fixed;
+//   bottom: 0;
+//   flex-shrink: 0; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
+// }
+// dust particles!
+.particle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+  }
+  @for $i from 1 through 70 {
+    @keyframes particle-animation-#{$i} {
+        100% {
+            transform: translate3d((random(90) * 1vw), (random(90) * 1vh), (random(100) * 1px));
+        }
+    }
+    .particle:nth-child(#{$i}){
+        animation: particle-animation-#{$i} 60s infinite;
+        $size: random(5) + 1 + px;
+        opacity: random(100)/100;
+        height: $size;
+        width: $size;
+        animation-delay: -$i * .2s;
+        transform: translate3d((random(90) * 1vw), (random(90) * 1vh), (random(100) * 1px));
+        background: $accessory-color;
+    }
+  }
 }
+
 #madewithlove {
   font-size: 1.3rem !important;
   font-weight: 400 !important;
@@ -133,7 +166,7 @@ footer {
 }
 #madewithlove-name, #madewithlove-heart {
   text-shadow: 0 0 0;
-  color: #ffbd80;
+  color: $accessory-color;
 }
 #madewithlove-name:hover {
   text-decoration: none;

@@ -5,6 +5,7 @@ import SearchContainer from '../containers/SearchContainer';
 import ResultsContainer from '../containers/ResultsContainer';
 import Pagination from '../components/Pagination';
 import Footer from '../components/Footer';
+import ParticleContainer from '../containers/ParticleContainer';
 import axios from 'axios';
 
 const PAGE_LIMIT = 25;
@@ -129,7 +130,7 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <div class="content">
+        <div className="content">
           <Header />
           {this.state.errorMessage 
             ? <>
@@ -144,6 +145,7 @@ export default class App extends Component {
           {/* <Pagination totalRecords={1000} pageLimit={PAGE_LIMIT} pageNeighbours={2} onPageChanged={this.onPageChanged} /> */}        
         </div>
         <Footer />
+        <ParticleContainer />
       </>
     )
   }
