@@ -8,8 +8,8 @@ export default class SearchContainer extends Component {
     this.doSearch = this.doSearch.bind(this);
   }
 
-  doSearch = (searchfield, searchinput) => {
-    this.props.doSearch(searchfield, searchinput);
+  doSearch = (cameraInput, solInput) => {
+    this.props.doSearch(cameraInput, solInput);
   }
 
   render() {

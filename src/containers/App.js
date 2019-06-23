@@ -48,7 +48,6 @@ export default class App extends Component {
       if (this._isMounted) {
         const searchResults = res.data.photos;
         if (searchResults && searchResults.length) {
-        const searchResults = res.data.photos;
           // console.log(searchResults[0].rover.max_sol);
           let max_sol = searchResults[0].rover.max_sol;
           this.setState({
@@ -80,13 +79,12 @@ export default class App extends Component {
     this._isMounted = false;
   }
 
-  doSearch = (searchField, searchInput) => {
-    let API_URL = MAIN_API_URL + '&earth_date=2015-6-3&page=1';
-    if (searchInput) {
+  doSearch = (cameraInput, solInput) => {
+    if (solInput) {
       // check for special characters.
-      let originalSearchInput = searchInput;
-      searchInput = originalSearchInput.replace(/[^a-z0-9,-. ]/gi, '');
-      if (searchInput !== originalSearchInput) {
+      let originalSolInput = solInput;
+      solInput = originalSolInput.replace(/\D/g,'');
+      if (solInput !== originalSolInput) {
         // user included weird characters the server doesn't accept.
         this.setState({
           searchResults: [],
@@ -94,15 +92,16 @@ export default class App extends Component {
         }); 
         return; 
       }
-      // API_URL = 'https://data.nasa.gov/resource/gh4g-9sfh.json?$order=name&$limit=' + PAGE_LIMIT + '&$offset=' + this.state.currentPage + '&$where=upper(' + searchField + ')=upper(\'' + searchInput + '\')';
-      let API_URL = MAIN_API_URL + '&earth_date=2015-6-3&page=1';
     }
+    let API_URL = MAIN_API_URL + '&sol=' + solInput + '&page=1';
     axios.get(API_URL)
     .then(res => {
       const searchResults = res.data.photos;
       if (searchResults && searchResults.length) {
+        let max_sol = searchResults[0].rover.max_sol;
         this.setState({
           searchResults,
+          max_sol,
           errorMessage: ''
         });
       } else {
@@ -121,10 +120,6 @@ export default class App extends Component {
         currentPage: 0,
         totalPages: 0
       });
-      // console.error("Error response:");
-      // console.error(err.response.data);
-      // console.error(err.response.status);
-      // console.error(err.response.headers);
     });
   }
 

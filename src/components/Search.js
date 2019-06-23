@@ -20,7 +20,6 @@ export default class Search extends Component {
     if (solInput < 0 || solInput > this.props.max_sol || solInput !== originalSolInput) {
       solInput = this.props.max_sol;
     }
-    console.log(solInput);
     this.setState({
       solInput
     });
