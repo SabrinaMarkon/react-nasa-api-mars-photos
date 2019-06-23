@@ -10,6 +10,7 @@ import axios from 'axios';
 
 const API_KEY = process.env.REACT_APP_NASA_API_KEY;
 const MAIN_API_URL = 'https://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos?api_key=' + API_KEY;
+const DEFAULT_MAX_SOL = 2444;
 
 export default class App extends Component {
 
@@ -17,6 +18,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       searchResults: [],
+      max_sol: DEFAULT_MAX_SOL,
       errorMessage: '',
       currentPage: 0,
       totalPages: 0
@@ -25,9 +27,17 @@ export default class App extends Component {
     this.onPageChanged = this.onPageChanged.bind(this);
   }
 
+  getYesterdaysDate() {
+    let date = new Date();
+    date.setDate(date.getDate()-1);
+    return date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
+  }
+  
   componentDidMount() {
     this._isMounted = true;
-    let API_URL = MAIN_API_URL + '&earth_date=2015-6-3&page=1';
+    // use yesterday's date with all cameras for the default search. More likely to have photos yesterday if today isn't long past midnight.
+    let yesterday = this.getYesterdaysDate();
+    let API_URL = MAIN_API_URL + '&earth_date=' + yesterday + '&page=1';
     axios.get(API_URL)
     .then(res => {
       // console.log(JSON.stringify(res)); // check object returned as JSON from Axios call.
@@ -38,13 +48,18 @@ export default class App extends Component {
       if (this._isMounted) {
         const searchResults = res.data.photos;
         if (searchResults && searchResults.length) {
+        const searchResults = res.data.photos;
+          // console.log(searchResults[0].rover.max_sol);
+          let max_sol = searchResults[0].rover.max_sol;
           this.setState({
             searchResults,
+            max_sol,
             errorMessage: ''
           });
         } else {
           this.setState({
             searchResults: [],
+            max_sol: DEFAULT_MAX_SOL,
             errorMessage: 'No Results Found'
           });
         }
@@ -53,7 +68,8 @@ export default class App extends Component {
     .catch(err => {
       this.setState({
         searchResults: [],
-        errorMessage: err.response.data.code,
+        max_sol: DEFAULT_MAX_SOL,
+        errorMessage: err,
         currentPage: 0,
         totalPages: 0
       });
@@ -65,8 +81,7 @@ export default class App extends Component {
   }
 
   doSearch = (searchField, searchInput) => {
-    // let API_URL = 'https://data.nasa.gov/resource/gh4g-9sfh.json?$order=name&$limit=' + PAGE_LIMIT + '&$offset=' + this.state.currentPage;
-    let API_URL = MAIN_API_URL;
+    let API_URL = MAIN_API_URL + '&earth_date=2015-6-3&page=1';
     if (searchInput) {
       // check for special characters.
       let originalSearchInput = searchInput;
@@ -80,11 +95,11 @@ export default class App extends Component {
         return; 
       }
       // API_URL = 'https://data.nasa.gov/resource/gh4g-9sfh.json?$order=name&$limit=' + PAGE_LIMIT + '&$offset=' + this.state.currentPage + '&$where=upper(' + searchField + ')=upper(\'' + searchInput + '\')';
-      API_URL = MAIN_API_URL;
+      let API_URL = MAIN_API_URL + '&earth_date=2015-6-3&page=1';
     }
     axios.get(API_URL)
     .then(res => {
-      const searchResults = res.data;
+      const searchResults = res.data.photos;
       if (searchResults && searchResults.length) {
         this.setState({
           searchResults,
@@ -93,6 +108,7 @@ export default class App extends Component {
       } else {
         this.setState({
           searchResults: [],
+          max_sol: DEFAULT_MAX_SOL,
           errorMessage: 'No Results Found'
         });
       }
@@ -100,7 +116,8 @@ export default class App extends Component {
     .catch(err => { 
       this.setState({
         searchResults: [],
-        errorMessage: err.response.data.code,
+        max_sol: DEFAULT_MAX_SOL,
+        errorMessage: err,
         currentPage: 0,
         totalPages: 0
       });
