@@ -9,7 +9,7 @@ export default class Search extends Component {
       cameraInput: ''
     }
     this.handleSolChange = this.handleSolChange.bind(this);
-    // this.handleSelected = this.handleSelected.bind(this);
+    this.handleCameraSelected = this.handleCameraSelected.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -25,12 +25,12 @@ export default class Search extends Component {
     });
   }
 
-  // handleSelected = event => {
-  //   let searchfield = (event.target.value);
-  //   this.setState({
-  //     searchfield
-  //   });
-  // }
+  handleCameraSelected = event => {
+    let cameraInput = event.target.value;
+    this.setState({
+      cameraInput
+    });
+  }
 
   handleSubmit = event => {
     event.preventDefault();
@@ -40,15 +40,15 @@ export default class Search extends Component {
   render() {
     return (
     <form>
-      <select className="form-input" value={this.state.searchfield} onChange={this.handleSelected}>
-        <option value="name">Name</option>
-        <option value="nametype">Name Type</option>
-        <option value="recclass">Rec Class</option>
-        {/* <option value="mass">Mass (g)</option> */}
-        <option value="fall">Fall</option>
-        {/* <option value="year">Year</option> */}
-        <option value="reclat">Latitude</option>
-        <option value="reclong">Longitude</option>
+      <select className="form-input" value={this.state.cameraInput} onChange={this.handleCameraSelected}>
+        <option value="">Select Camera</option>
+        <option value="fhaz">Front Hazard Avoidance Camera (FHAZ)</option>
+        <option value="rhaz">Rear Hazard Avoidance Camera (RHAZ)</option>
+        <option value="mast">Mast Camera (MAST)</option>
+        <option value="chemcam">Chemistry and Camera Complex (CHEMCAM)</option>
+        <option value="mahli">Mars Hand Lens Imager (MAHLI)</option>
+        <option value="mardi">Mars Descent Imager (MARDI)</option>
+        <option value="navcam">Navigation Camera (NAVCAM)</option>
       </select>
       <label htmlFor="solInput" className="searchlabel">Sol:</label>
       <input

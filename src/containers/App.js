@@ -94,8 +94,11 @@ export default class App extends Component {
         return; 
       }
     }
-    let API_URL = MAIN_API_URL + '&sol=' + solInput + '&page=1';
-    console.log(API_URL);
+    if (cameraInput) {
+      let originalCameraInput = cameraInput;
+      cameraInput = originalCameraInput.replace(/[^A-Za-z]/g,'');
+    }
+    let API_URL = MAIN_API_URL + '&sol=' + solInput + '&camera=' + cameraInput + '&page=1';
     axios.get(API_URL)
     .then(res => {
       const searchResults = res.data.photos;
