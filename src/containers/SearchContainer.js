@@ -15,7 +15,7 @@ export default class SearchContainer extends Component {
   render() {
     return (
       <div className="center-align pt-2">
-        <Search doSearch={this.doSearch} />
+        <Search doSearch={this.doSearch} max_sol={this.props.max_sol} />
       </div>
     );
   }

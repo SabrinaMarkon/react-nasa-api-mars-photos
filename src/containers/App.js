@@ -153,7 +153,7 @@ export default class App extends Component {
               <SearchContainer doSearch={this.doSearch} />
               </>
             : <>
-              <SearchContainer doSearch={this.doSearch} />
+              <SearchContainer doSearch={this.doSearch} max_sol={this.state.max_sol} />
               <ResultsContainer searchResults={this.state.searchResults} />
               </>
           }

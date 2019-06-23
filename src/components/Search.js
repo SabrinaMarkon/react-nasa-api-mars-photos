@@ -5,31 +5,37 @@ export default class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchinput: '',
-      searchfield: 'name'
+      solInput: '',
+      cameraInput: ''
     }
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSelected = this.handleSelected.bind(this);
+    this.handleSolChange = this.handleSolChange.bind(this);
+    // this.handleSelected = this.handleSelected.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange = event => {
-    let searchinput = (event.target.value);
+  handleSolChange = event => {
+    let solInput = (event.target.value);
+    let originalSolInput = solInput;
+    solInput = originalSolInput.replace(/\D/g,'');
+    if (solInput < 0 || solInput > this.props.max_sol || solInput !== originalSolInput) {
+      solInput = this.props.max_sol;
+    }
+    console.log(solInput);
     this.setState({
-      searchinput
+      solInput
     });
   }
 
-  handleSelected = event => {
-    let searchfield = (event.target.value);
-    this.setState({
-      searchfield
-    });
-  }
+  // handleSelected = event => {
+  //   let searchfield = (event.target.value);
+  //   this.setState({
+  //     searchfield
+  //   });
+  // }
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.doSearch(this.state.searchfield, this.state.searchinput);
+    this.props.doSearch(this.state.cameraInput, this.state.solInput);
   }
 
   render() {
@@ -45,11 +51,16 @@ export default class Search extends Component {
         <option value="reclat">Latitude</option>
         <option value="reclong">Longitude</option>
       </select>
+      <label htmlFor="solInput" className="searchlabel">Sol:</label>
       <input
+        name="solInput"
+        id="solInput"
         className="form-input"
         type="text"
-        value={this.state.searchinput}
-        onChange={this.handleChange}
+        size="4"
+        placeholder={this.props.max_sol}
+        value={this.state.solInput}
+        onChange={this.handleSolChange}
       />
       <button className="form-input" type="button" onClick={this.handleSubmit}>Search!</button>
     </form>
