@@ -61,7 +61,7 @@ export default class Search extends Component {
         value={this.state.solInput}
         onChange={this.handleSolChange}
       />
-      <button className="form-input" type="button" onClick={this.handleSubmit}>Search!</button>
+      <button className="form-input" type="button" onClick={this.handleSubmit}>Find Photos!</button>
     </form>
     )
   }
