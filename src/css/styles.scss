@@ -126,12 +126,12 @@ header {
 .pt-3 {
   padding-top: 3rem;
 }
-// footer {
-//   width: 100%;
-//   position: fixed;
-//   bottom: 0;
-//   flex-shrink: 0; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
-// }
+footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  flex-shrink: 0; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
+}
 // dust particles!
 .particle-container {
   position: fixed;
@@ -296,6 +296,7 @@ ul.pagination {
   }
   .user-message {
     font-size: 1rem;
+    margin-top: 1rem;
   }
   .form-input {
     font-size: 1rem;

@@ -5,7 +5,7 @@ export default class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      solInput: '',
+      solInput: this.props.max_sol,
       cameraInput: ''
     }
     this.handleSolChange = this.handleSolChange.bind(this);

@@ -83,9 +83,9 @@ export default class App extends Component {
   doSearch = (cameraInput, solInput) => {
     if (solInput) {
       // check for special characters.
-      let originalSolInput = solInput;
+      let originalSolInput = solInput.toString();
       solInput = originalSolInput.replace(/\D/g,'');
-      if (solInput !== originalSolInput) {
+      if (solInput != originalSolInput) {
         // user included weird characters the server doesn't accept.
         this.setState({
           searchResults: [],
@@ -95,6 +95,7 @@ export default class App extends Component {
       }
     }
     let API_URL = MAIN_API_URL + '&sol=' + solInput + '&page=1';
+    console.log(API_URL);
     axios.get(API_URL)
     .then(res => {
       const searchResults = res.data.photos;
