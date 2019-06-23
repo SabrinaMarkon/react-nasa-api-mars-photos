@@ -23,6 +23,7 @@ export default class App extends Component {
       currentPage: 0,
       totalPages: 0
     }
+    this.getYesterdaysDate = this.getYesterdaysDate.bind(this);
     this.doSearch = this.doSearch.bind(this);
     this.onPageChanged = this.onPageChanged.bind(this);
   }
