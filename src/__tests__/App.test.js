@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 
 // components
 import App from '../containers/App';
-import SearchContainer from '../containers/SearchContainer';
+import Search from '../components/Search';
 import ResultsContainer from '../containers/ResultsContainer';
 
 function setup() {
@@ -25,8 +25,8 @@ describe('Testing main App container', () => {
     expect(wrapper.exists()).toBe(true);
   });
 
-  it('should render a child SearchContainer component', () => {
-    const wrapper = shallow(<SearchContainer />);
+  it('should render a child Search component', () => {
+    const wrapper = shallow(<Search />);
     expect(wrapper.exists()).toBe(true);
   });
 

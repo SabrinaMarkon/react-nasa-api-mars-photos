@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Header from '../components/Header';
 import UserMessage from '../components/UserMessage';
-import SearchContainer from '../containers/SearchContainer';
+import Search from '../components/Search';
 import ResultsContainer from '../containers/ResultsContainer';
 import Pagination from '../components/Pagination';
 import Footer from '../components/Footer';
@@ -41,27 +41,29 @@ export default class App extends Component {
     let API_URL = MAIN_API_URL + '&earth_date=' + yesterday + '&page=1';
     axios.get(API_URL)
     .then(res => {
-      // console.log(JSON.stringify(res)); // check object returned as JSON from Axios call.
       /* Add a check in the .then() handler so this.setState is not called if the component has been unmounted:
       That is, how should react 'react' when you call setState on a component that has already unmounted. The right way 
       to handle it would be to cancel the data fetching request if the component will be unmounted for some reason
       (like user navigating away) */
       if (this._isMounted) {
-        const searchResults = res.data.photos;
+        let searchResults = res.data.photos;
         if (searchResults && searchResults.length) {
-          // console.log(searchResults[0].rover.max_sol);
+          // We can get the max_sol (last day the rover has been active so far) from the first returned record.
           let max_sol = searchResults[0].rover.max_sol;
+          searchResults = Array.from(searchResults);
           this.setState({
             searchResults,
             max_sol,
             errorMessage: ''
           });
+          return;
         } else {
           this.setState({
             searchResults: [],
             max_sol: DEFAULT_MAX_SOL,
             errorMessage: 'No Results Found'
           });
+          return;
         }
       }
     })
@@ -73,6 +75,7 @@ export default class App extends Component {
         currentPage: 0,
         totalPages: 0
       });
+      return
     })
   }
   
@@ -101,20 +104,23 @@ export default class App extends Component {
     let API_URL = MAIN_API_URL + '&sol=' + solInput + '&camera=' + cameraInput + '&page=1';
     axios.get(API_URL)
     .then(res => {
-      const searchResults = res.data.photos;
+      let searchResults = JSON.stringify(res.data.photos);
       if (searchResults && searchResults.length) {
         let max_sol = searchResults[0].rover.max_sol;
+        searchResults = Array.from(searchResults);
         this.setState({
           searchResults,
           max_sol,
           errorMessage: ''
         });
+        return;
       } else {
         this.setState({
           searchResults: [],
           max_sol: DEFAULT_MAX_SOL,
           errorMessage: 'No Results Found'
         });
+        return;
       }
     })
     .catch(err => { 
@@ -125,6 +131,7 @@ export default class App extends Component {
         currentPage: 0,
         totalPages: 0
       });
+      return;
     });
   }
 
@@ -150,10 +157,10 @@ export default class App extends Component {
           {this.state.errorMessage 
             ? <>
               <UserMessage userMessage={this.state.errorMessage} />
-              <SearchContainer doSearch={this.doSearch} />
+              <Search doSearch={this.doSearch} max_sol={this.state.max_sol} />
               </>
             : <>
-              <SearchContainer doSearch={this.doSearch} max_sol={this.state.max_sol} />
+              <Search doSearch={this.doSearch} max_sol={this.state.max_sol} />
               <ResultsContainer searchResults={this.state.searchResults} />
               </>
           }
