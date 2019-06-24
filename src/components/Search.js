@@ -39,7 +39,8 @@ export default class Search extends Component {
 
   render() {
     return (
-    <form className="center-align pt-2">
+    <form className="flex center-align pt-2">
+      <div className="flex-item pt-0">
       <label htmlFor="cameraInput" className="searchlabel">Camera:</label>
       <select 
         name="cameraInput"
@@ -55,7 +56,9 @@ export default class Search extends Component {
         <option value="mardi">Mars Descent Imager (MARDI)</option>
         <option value="navcam">Navigation Camera (NAVCAM)</option>
       </select>
-      <label htmlFor="solInput" className="searchlabel">Sol:</label>
+      </div>
+      <div className="flex-item pt-0">
+      <label htmlFor="solInput" className="searchlabel plr-1">Sol:</label>
       <input
         name="solInput"
         id="solInput"
@@ -66,7 +69,10 @@ export default class Search extends Component {
         value={this.state.solInput}
         onChange={this.handleSolChange}
       />
+      </div>
+      <div className="flex-item pt-0">
       <button className="form-input" type="button" onClick={this.handleSubmit}>Find Photos!</button>
+      </div>
     </form>
     )
   }
