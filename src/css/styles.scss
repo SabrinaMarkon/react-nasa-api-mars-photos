@@ -74,17 +74,17 @@ header {
     border-radius: 20%;
     box-shadow: 2px 2px 1px #fff;
     .shine {
-      z-index: 3;
+      z-index: -1;
       position: relative;
       overflow: hidden;
       width: 1000px;
       height: 100px;
       margin-left: -100px;
       transform: rotate(30deg);
-      background: -webkit-linear-gradient(top, transparent, rgba(255,255,255,0.1),transparent);
+      background: -webkit-linear-gradient(top, transparent, rgba(255,255,255,0.2),transparent);
       position: absolute;
-      animation: shine 3s 1;
-      -webkit-animation: shine 3s 1;
+      animation: shine 2s 1;
+      -webkit-animation: shine 2s 1;
     }
     @keyframes shine {
       100% {
@@ -104,10 +104,9 @@ header {
     }
     .photo {
       z-index: 4;
-      position: relative;
-      margin: 4px 5px 5px 8px;
+      width: 300px;
+      margin: 18px 5px 5px 19px;
       border-radius: 25% 25% 0 0;
-      width: 96%;
       overflow: hidden;
       opacity: 0.9;
       &:hover {
