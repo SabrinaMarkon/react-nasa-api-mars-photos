@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function ParticleContainer() {
   const particles = [];
-  for (let i = 0; i < 70; i++) {
+  for (let i = 0; i < 100; i++) {
     particles.push(i);
   }
   return (
