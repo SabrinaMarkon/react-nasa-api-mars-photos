@@ -60,7 +60,7 @@ export default class Result extends Component {
         <div id={`modal-${row['id']}`} className={'modal ' + this.state.zoomclass} 
           onClick={() => {this.handleToggleModal(row)}}>
         <span className="close" onClick={() => {this.handleToggleModal(row)}}>&times;</span>
-        <div className="center-align"><img id={`modalimage-${row['id']}`} src={row['img_src']} /></div>
+        <div className="modal-frame center-align"><img id={`modalimage-${row['id']}`} className="modal-image" src={row['img_src']} /></div>
         </div>
     </div>
     );
