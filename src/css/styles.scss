@@ -22,7 +22,7 @@ body {
   color: $secondary-color;
   font-family: $main-font;
 }
-// dust particles!
+/* Dust particles! */
 .particle-container {
   position: fixed;
   top: 0;
@@ -276,10 +276,10 @@ ul.pagination {
 /* Modal */
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
+  display: none; /* Hide modal by default. */
   cursor: zoom-out;
   position: fixed;
-  z-index: 5; /* Sit on top */
+  z-index: 5; /* Top layer. */
   padding-top: 80px;
   left: 0;
   top: 0;
@@ -298,18 +298,28 @@ ul.pagination {
 }
 /* Add Animation */
 .modal-content {  
-  -webkit-animation-name: zoom;
+  -webkit-animation-name: zoom-in;
   -webkit-animation-duration: 0.6s;
-  animation-name: zoom;
+  animation-name: zoom-in;
   animation-duration: 0.6s;
 }
-@-webkit-keyframes zoom {
+/* Zoom in animation. */
+@-webkit-keyframes zoom-in {
   from {-webkit-transform:scale(0)} 
   to {-webkit-transform:scale(1)}
 }
-@keyframes zoom {
+@keyframes zoom-in {
   from {transform:scale(0)} 
   to {transform:scale(1)}
+}
+/* Zoom out animation. */
+@-webkit-keyframes zoom-out {
+  from {-webkit-transform:scale(1)} 
+  to {-webkit-transform:scale(0)}
+}
+@keyframes zoom-out {
+  from {transform:scale(1)} 
+  to {transform:scale(0)}
 }
 /* The Close Button */
 .close {

@@ -59,7 +59,7 @@ export default class Result extends Component {
             <div>Camera: <span className="fieldvalue">{row['camera'].name}</span></div>
           </figcaption>
         </figure>
-        <div id={`modal-${row['id']}`} className="modal">
+        <div id={`modal-${row['id']}`} className="modal" onClick={() => {this.handleCloseModal(row)}}>
         <span className="close" onClick={() => {this.handleCloseModal(row)}}>&times;</span>
         <img id={`modalimage-${row['id']}`} className="modal-content" />
         </div>
