@@ -5,12 +5,12 @@ export default class Result extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      shineclass: ''
+      shineclass: '',
+      zoomclass: 'modal-content-out'
     }
     this.handleHover = this.handleHover.bind(this);
     this.handleLeave = this.handleLeave.bind(this);
-    this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleToggleModal = this.handleToggleModal.bind(this);
   }
 
   handleHover() {
@@ -27,21 +27,19 @@ export default class Result extends Component {
     }, 2000);
   }
 
-  handleOpenModal(row) {
-    const modalid = `modal-${row['id']}`;
-    const imageid = `image-${row['id']}`;
-    const modalimageid = `modalimage-${row['id']}`;
-    const modal = document.getElementById(modalid);
-    const img = document.getElementById(imageid);
-    const modalImg = document.getElementById(modalimageid);
-    modal.style.display = "block";
-    modalImg.src = row['img_src'];
-  }
-
-  handleCloseModal(row) {
+  handleToggleModal(row) {
     const modalid = `modal-${row['id']}`;
     const modal = document.getElementById(modalid);
-    modal.style.display = "none";
+    let zoom = 'modal-content-out'; // default is hidden (zoomed out)
+    if (this.state.zoomclass === zoom) {
+      zoom = 'modal-content'; // its hidden so let's show it.
+      modal.style.display = 'block';
+    } else {
+      zoom = 'modal-content-out'; // it is showing so let's hide it.
+    }
+    this.setState({
+      zoomclass: zoom
+    });
   }
 
   render() {
@@ -49,7 +47,7 @@ export default class Result extends Component {
     return (
       <div className="grid-item-wrapper" onMouseOver={this.handleHover} onMouseLeave={this.handleLeave}>
         <figure className="grid-item">
-          <img id={`image-${row['id']}`} src={row['img_src']} className="photo" alt={row['img_src']} onClick={() => {this.handleOpenModal(row)}} />
+          <img id={`image-${row['id']}`} src={row['img_src']} className="photo" alt={row['img_src']} onClick={() => {this.handleToggleModal(row)}} />
           {this.state.shineclass === 'shine'
             && <div className='shine'></div>
           }
@@ -59,9 +57,10 @@ export default class Result extends Component {
             <div>Camera: <span className="fieldvalue">{row['camera'].name}</span></div>
           </figcaption>
         </figure>
-        <div id={`modal-${row['id']}`} className="modal" onClick={() => {this.handleCloseModal(row)}}>
-        <span className="close" onClick={() => {this.handleCloseModal(row)}}>&times;</span>
-        <img id={`modalimage-${row['id']}`} className="modal-content" />
+        <div id={`modal-${row['id']}`} className={'modal ' + this.state.zoomclass} 
+          onClick={() => {this.handleToggleModal(row)}}>
+        <span className="close" onClick={() => {this.handleToggleModal(row)}}>&times;</span>
+        <div className="center-align"><img id={`modalimage-${row['id']}`} src={row['img_src']} /></div>
         </div>
     </div>
     );

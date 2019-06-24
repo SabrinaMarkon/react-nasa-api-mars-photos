@@ -289,38 +289,52 @@ ul.pagination {
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
 }
-/* Modal Content (image) */
-.modal-content {
+/* If the class is modal-content, the image shows (zoomed in to be large). */
+/* If the class is modal-content-out, the image is hidden (zoomed out to be small). */
+.modal-content, .modal-content-out {
   margin: auto;
   display: block;
-  width: 80%;
-  max-width: 700px;
+  // width: 80%;
+  // max-width: 700px;
 }
-/* Add Animation */
+img {
+  max-width: 700px;
+  margin: auto;
+}
+/* Animation to hide the modal (zoom out to be small) */
 .modal-content {  
-  -webkit-animation-name: zoom-in;
+  -webkit-animation-name: zoom;
   -webkit-animation-duration: 0.6s;
-  animation-name: zoom-in;
+  animation-name: zoom;
   animation-duration: 0.6s;
 }
+/* Animation to show the modal (zoom in to be large) */
+.modal-content-out {  
+  -webkit-animation-name: zoomin;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoomin;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+}
 /* Zoom in animation. */
-@-webkit-keyframes zoom-in {
+@-webkit-keyframes zoom {
   from {-webkit-transform:scale(0)} 
   to {-webkit-transform:scale(1)}
 }
-@keyframes zoom-in {
+@keyframes zoom {
   from {transform:scale(0)} 
   to {transform:scale(1)}
 }
 /* Zoom out animation. */
-@-webkit-keyframes zoom-out {
+@-webkit-keyframes zoomin {
   from {-webkit-transform:scale(1)} 
   to {-webkit-transform:scale(0)}
 }
-@keyframes zoom-out {
-  from {transform:scale(1)} 
+@keyframes zoomin {
+  from {transform:scale(1)}
   to {transform:scale(0)}
 }
+
 /* The Close Button */
 .close {
   z-index: 6;
