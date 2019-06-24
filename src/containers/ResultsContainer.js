@@ -9,9 +9,9 @@ export default class ResultsContainer extends Component {
           <figure className="grid-item" key={i}>
             <img src={row['img_src']} className="photo" alt="" />
             <figcaption className="description">
-              <div>Martian Sol: {row['sol']}</div>
-              <div>Earth Date: {row['earth_date']}</div>
-              <div>Camera: {row['camera'].name}</div>
+              <div>Martian Sol: <span className="fieldvalue">{row['sol']}</span></div>
+              <div>Earth Date: <span className="fieldvalue">{row['earth_date']}</span></div>
+              <div>Camera: <span className="fieldvalue">{row['camera'].name}</span></div>
             </figcaption>
           </figure>
       );

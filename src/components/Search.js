@@ -40,7 +40,12 @@ export default class Search extends Component {
   render() {
     return (
     <form className="center-align pt-2">
-      <select className="form-input" value={this.state.cameraInput} onChange={this.handleCameraSelected}>
+      <label htmlFor="cameraInput" className="searchlabel">Camera:</label>
+      <select 
+        name="cameraInput"
+        className="form-input" 
+        value={this.state.cameraInput} 
+        onChange={this.handleCameraSelected}>
         <option value="">Any and All!</option>
         <option value="fhaz">Front Hazard Avoidance Camera (FHAZ)</option>
         <option value="rhaz">Rear Hazard Avoidance Camera (RHAZ)</option>
