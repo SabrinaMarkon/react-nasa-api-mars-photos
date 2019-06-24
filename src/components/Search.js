@@ -58,7 +58,7 @@ export default class Search extends Component {
       </select>
       </div>
       <div className="flex-item pt-0">
-      <label htmlFor="solInput" className="searchlabel plr-1">Sol:</label>
+      <label htmlFor="solInput" className="searchlabel pl-0">Sol:</label>
       <input
         name="solInput"
         id="solInput"
