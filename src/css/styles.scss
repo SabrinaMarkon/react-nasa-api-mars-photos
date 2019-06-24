@@ -36,16 +36,17 @@ header {
     text-transform: uppercase;
     letter-spacing: 5px;
     background: linear-gradient(#262626,#fff,#262626);
+    background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
   }
   h1>span:nth-child(1)
   {
-    z-index: 2;
+    z-index: 3;
   }
   h1>span:nth-child(2)
   {
-    z-index: 1;
+    z-index: 2;
     text-shadow: 1px 1px 0 #262626, 2px 2px 0 #262626, 3px 3px 0 #262626,
     4px 4px 0 #262626, 5px 5px 0 #262626, 1px 1px 0 #262626, 6px 20px 20px rgba(0,0,0,1),
     -1px -1px 0 #fff;
@@ -58,7 +59,10 @@ header {
   justify-content: center;
   width: 100%;
   .grid-item {
+    z-index: 2;
+    cursor: pointer;
     align-self: center;
+    position: relative;
     background: $base-color;
     color: $secondary-color;
     margin: 2rem;
@@ -69,8 +73,38 @@ header {
     min-height: 400px;
     border-radius: 20%;
     box-shadow: 2px 2px 1px #fff;
-    cursor: pointer;
+    .shine {
+      z-index: 3;
+      position: relative;
+      overflow: hidden;
+      width: 1000px;
+      height: 100px;
+      margin-left: -100px;
+      transform: rotate(30deg);
+      background: -webkit-linear-gradient(top, transparent, rgba(255,255,255,0.1),transparent);
+      position: absolute;
+      animation: shine 3s 1;
+      -webkit-animation: shine 3s 1;
+    }
+    @keyframes shine {
+      100% {
+        margin-top: -400px;
+      }
+      0% {
+        margin-top: 400px;
+      }
+    }
+    @-webkit-keyframes shine {
+      100% {
+        margin-top: -400px;
+      }
+      0% {
+        margin-top: 400px;
+      }
+    }
     .photo {
+      z-index: 4;
+      position: relative;
       margin: 4px 5px 5px 8px;
       border-radius: 25% 25% 0 0;
       width: 96%;
@@ -81,6 +115,8 @@ header {
       }
     }
     .description {
+      z-index: 4;
+      position: relative;
       padding: 50px 20px 50px 55px;
       font-size: 1.0rem;
       text-shadow: 2px 2px 1px #000;
@@ -165,7 +201,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: -1;
+  z-index: 1;
   .particle {
     position: absolute;
     border-radius: 50%;
@@ -177,7 +213,7 @@ header {
         }
     }
     .particle:nth-child(#{$i}){
-        animation: particle-animation-#{$i} 60s infinite;
+        animation: particle-animation-#{$i} 60s 1;
         $size: random(5) + 1 + px;
         opacity: random(100)/100;
         height: $size;
@@ -188,7 +224,6 @@ header {
     }
   }
 }
-
 #madewithlove {
   font-size: 1.3rem !important;
   font-weight: 400 !important;
