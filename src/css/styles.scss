@@ -25,7 +25,6 @@ body {
 header {
   margin-bottom: 200px;
   h1>span{
-    top: 9%;
     position: absolute;
     transition: translateY(-50%);
     margin: 0;
@@ -98,9 +97,9 @@ header {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  // margin-top: 300px;
   .flexitem {
     padding: 20px 5px 20px 0;
+    margin-bottom: 0;
   }
 }
 .form-input {
@@ -160,7 +159,6 @@ header {
 .pt-3 {
   padding-top: 3rem;
 }
-
 // dust particles!
 .particle-container {
   position: fixed;
@@ -249,6 +247,9 @@ ul.pagination {
   }
   header {
     margin-bottom: 80px;
+    h1>span {
+      top: 40px;
+    }
   }
   .grid > .grid-item {
     font-size: 2vw;
@@ -293,6 +294,9 @@ ul.pagination {
   }
   header {
     margin-bottom: 110px;
+    h1>span {
+      top: 45px;
+    }
   }
   .grid > .grid-item {
     font-size: 2vw;
@@ -341,6 +345,9 @@ ul.pagination {
   /* big landscape tablets, laptops, and desktops */
   h1 {
     font-size: 5rem; 
+    h1>span {
+      top: 55px;
+    }
   }
   header {
     margin-bottom: 160px;
@@ -361,6 +368,9 @@ ul.pagination {
   }
   header {
     margin-bottom: 180px;
+    h1>span {
+      top: 56px;
+    }
   }
 }
 @media (min-width: 1500px) {
@@ -370,5 +380,8 @@ ul.pagination {
   }
   header {
     margin-bottom: 200px;
+    h1>span {
+      top: 59px;
+    }
   }
 }

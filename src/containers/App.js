@@ -84,6 +84,7 @@ export default class App extends Component {
   }
 
   doSearch = (cameraInput, solInput) => {
+
     if (solInput) {
       // check for special characters.
       let originalSolInput = solInput.toString();
@@ -97,15 +98,20 @@ export default class App extends Component {
         return; 
       }
     }
+    let API_URL;
     if (cameraInput) {
       let originalCameraInput = cameraInput;
       cameraInput = originalCameraInput.replace(/[^A-Za-z]/g,'');
+      API_URL = MAIN_API_URL + '&sol=' + solInput + '&camera=' + cameraInput + '&page=1';
+    } else {
+      API_URL = MAIN_API_URL + '&sol=' + solInput + '&page=1';
     }
-    let API_URL = MAIN_API_URL + '&sol=' + solInput + '&camera=' + cameraInput + '&page=1';
     axios.get(API_URL)
     .then(res => {
-      let searchResults = JSON.stringify(res.data.photos);
+      let searchResults = res.data.photos;
+      // console.log(API_URL + ' ' + searchResults);
       if (searchResults && searchResults.length) {
+        // We can get the max_sol (last day the rover has been active so far) from the first returned record.
         let max_sol = searchResults[0].rover.max_sol;
         searchResults = Array.from(searchResults);
         this.setState({
