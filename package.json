@@ -9,7 +9,8 @@
     "test:coverage": "jest --coverage --colors",
     "start": "webpack-dev-server --mode development",
     "eslint-fix": "eslint --fix \"src/**/*.js\"",
-    "scss": "node-sass --watch scss -o css"
+    "scss": "node-sass --watch scss -o css",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
