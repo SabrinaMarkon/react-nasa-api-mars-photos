@@ -15,14 +15,16 @@ const DEFAULT_MAX_SOL = 2444;
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get('/api', (req, res) => {
-  let API_URL = MAIN_API_URL + res.query();
-  res.send(API_URL);
-  // axios.get(API_URL)
-  // .then(response => {
-  // res.json(response);
-  // })
-  // .catch(() => res.send('Unable to retrieve data'));
+app.get('/api', (req, res, next) => {
+
+  axios.get()
+    .then(
+
+    )
+    .catch(err => {
+      console.log(err);
+    });
+
 });
 
 // app.get('*', (res) => res.send('Not found')); // catch all for get requests.

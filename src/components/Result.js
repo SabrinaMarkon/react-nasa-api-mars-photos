@@ -13,6 +13,15 @@ export default class Result extends Component {
     this.handleToggleModal = this.handleToggleModal.bind(this);
   }
 
+  componentDidMount() {
+    // Check that the Result component is loaded before updating state.
+    this._isMounted = true;
+  }
+  
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
   handleHover() {
     this.setState({
       shineclass: 'shine'

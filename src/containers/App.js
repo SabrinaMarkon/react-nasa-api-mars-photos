@@ -36,8 +36,9 @@ export default class App extends Component {
   }
   
   componentDidMount() {
+    this._isMounted = true;
     if (this._isMounted) {
-      doSearch(cameraInput, solInput);
+      this.doSearch('', '');
     }
   }
   
@@ -70,7 +71,7 @@ export default class App extends Component {
         API_URL = MAIN_API_URL + '&sol=' + solInput + '&page=1';
       }
     }
-    axios.get(API_URL) // the Express endpoint.
+    axios.get(API_URL) // Express endpoint.
     .then(res => {
       let searchResults = res.data.photos;
       // console.log(API_URL + ' ' + searchResults);
