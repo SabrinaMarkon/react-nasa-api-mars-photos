@@ -12,6 +12,7 @@
     "scss": "node-sass --watch scss -o css",
     "build": "webpack --mode production --hot"
   },
+  "proxy": "http://localhost:3000",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SabrinaMarkon/react-nasa-api-mars-photos.git"

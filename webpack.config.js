@@ -13,11 +13,11 @@ const config = {
     filename: 'bundle.js'
   },
   devServer: {
-    port: 8081,
-    contentBase: './dist',
-    proxy: {
-      '/api': 'http://localhost:3000/api'
-    }
+    // port: 8081,
+    contentBase: './dist'
+    // proxy: {
+    //   '/api': 'http://localhost:3000/api'
+    // }
   },
   module: {
     rules: [

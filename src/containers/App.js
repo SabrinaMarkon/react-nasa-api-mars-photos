@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 import ParticleContainer from '../containers/ParticleContainer';
 import axios from 'axios';
 
-const MAIN_API_URL = '/api';
+const API_URL = 'http://localhost:3000/api';
 const DEFAULT_MAX_SOL = 2444;
 
 export default class App extends Component {
@@ -46,8 +46,12 @@ export default class App extends Component {
 
   doSearch(cameraInput, solInput) {    
     let yesterday = this.getYesterdaysDate();
+    let params = {};
     // Default search URL: use yesterday's date with all cameras for the default search. More likely to have photos yesterday if today isn't long past midnight.
-    let API_URL = MAIN_API_URL + '&earth_date=' + yesterday + '&page=1';
+    params = {
+      earth_date: yesterday,
+      page: 1
+    }
     if (solInput) {
       // Not default search URL because user submitted a search.
       // But first, check for special characters.
@@ -64,16 +68,23 @@ export default class App extends Component {
       if (cameraInput) {
         let originalCameraInput = cameraInput;
         cameraInput = originalCameraInput.replace(/[^A-Za-z]/g,'');
-        API_URL = MAIN_API_URL + '&sol=' + solInput + '&camera=' + cameraInput + '&page=1';
+        params = {
+          sol: solInput,
+          camera: cameraInput,
+          page: 1
+        }
       } else {
-        API_URL = MAIN_API_URL + '&sol=' + solInput + '&page=1';
+        params = {
+          sol: solInput,
+          page: 1
+        }
       }
     }
-    axios.get(API_URL) // Express endpoint.
+    axios.post(API_URL, params) // Express endpoint.
     .then(res => {
       let searchResults = res.data.photos;
-      // console.log(API_URL + ' ' + searchResults);
       if (searchResults && searchResults.length) {
+        // console.log(res.data + ' COB');
         // We can get the max_sol (last day the rover has been active so far) from the first returned record.
         let max_sol = searchResults[0].rover.max_sol;
         searchResults = Array.from(searchResults);
@@ -84,6 +95,7 @@ export default class App extends Component {
         });
         return;
       } else {
+        // console.log(res.data + ' SQUEEBZ');
         this.setState({
           searchResults: [],
           max_sol: DEFAULT_MAX_SOL,
