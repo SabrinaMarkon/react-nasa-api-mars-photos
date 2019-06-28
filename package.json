@@ -10,7 +10,7 @@
     "start": "webpack-dev-server --mode development",
     "eslint-fix": "eslint --fix \"src/**/*.js\"",
     "scss": "node-sass --watch scss -o css",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production --hot"
   },
   "repository": {
     "type": "git",

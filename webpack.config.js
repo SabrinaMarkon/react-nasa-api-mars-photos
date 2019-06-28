@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack'); // access .env variables.
-const webpack = require('webpack'); // to include webpack's built-in plugins.
+// const webpack = require('webpack'); // to include webpack's built-in plugins.
 
 const config = {
   mode: 'production',     // set mode option, 'development' or 'production'
@@ -13,8 +13,7 @@ const config = {
     filename: 'bundle.js'
   },
   devServer: {
-    host: '0.0.0.0',
-    port: 8080,
+    port: 8081,
     contentBase: './dist'
   },
   module: {
@@ -51,7 +50,8 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-    template: './src/index.html'
+    template: './src/index.html',
+    favicon: './src/favicon.ico'
     }),
     new Dotenv()
     ]
