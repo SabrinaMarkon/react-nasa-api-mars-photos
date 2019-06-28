@@ -10,19 +10,41 @@ const dotenv = require('dotenv');
 dotenv.config();
 const API_KEY = process.env.REACT_APP_NASA_API_KEY;
 const MAIN_API_URL = 'https://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos?api_key=' + API_KEY;
-const DEFAULT_MAX_SOL = 2444;
 
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get('/api', (req, res, next) => {
+function getYesterdaysDate() {
+  let date = new Date();
+  date.setDate(date.getDate()-1);
+  return date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
+}
 
-  axios.get()
-    .then(
-
-    )
+app.get('/api', (req, res) => {
+  let querystring = '';
+  if (req.query.solInput) {
+    // user submitted search.
+    querystring += `&sol=${req.query.solInput}`;
+    if (req.query.cameraInput) {
+      querystring += `&camera=${req.query.cameraInput}`;
+    }
+  } else {
+    // default search.
+    if (req.query.earth_date) {
+      querystring += `&earth_date=${req.query.earth_date}`;
+    } else {
+      let yesterday = getYesterdaysDate();
+      querystring += `&earth_date=${yesterday}`;
+    }
+  }
+  let API_URL = MAIN_API_URL + querystring;
+  axios.get(API_URL)
+    .then(response => {
+      // res.send(response.data.photos[0].img_src);
+      res.json(response);
+    })
     .catch(err => {
-      console.log(err);
+      res.send(err);
     });
 
 });

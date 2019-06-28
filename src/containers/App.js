@@ -8,9 +8,7 @@ import Footer from '../components/Footer';
 import ParticleContainer from '../containers/ParticleContainer';
 import axios from 'axios';
 
-// const MAIN_API_URL = '/';
-const API_KEY = process.env.REACT_APP_NASA_API_KEY;
-const MAIN_API_URL = 'https://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos?api_key=' + API_KEY;
+const MAIN_API_URL = '/api';
 const DEFAULT_MAX_SOL = 2444;
 
 export default class App extends Component {

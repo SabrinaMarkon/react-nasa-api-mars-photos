@@ -16,7 +16,7 @@ const config = {
     port: 8081,
     contentBase: './dist',
     proxy: {
-      '/api': 'http://localhost:3000'
+      '/api': 'http://localhost:3000/api'
     }
   },
   module: {
