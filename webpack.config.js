@@ -14,7 +14,10 @@ const config = {
   },
   devServer: {
     port: 8081,
-    contentBase: './dist'
+    contentBase: './dist',
+    proxy: {
+      '/api': 'http://localhost:3000'
+    }
   },
   module: {
     rules: [
