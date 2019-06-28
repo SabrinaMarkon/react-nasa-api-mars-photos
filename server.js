@@ -27,25 +27,19 @@ app.post('/api', (req, res) => {
 
   // Our parameters (which might vary in their existence depending on the search or default search) we need to send to the remote API are in req.body.
   params = req.body;
-  // Possible parameters - but not all will be present.
-  // console.log(params.earth_date);
-  // console.log(params.sol);
-  // console.log(params.camera);
-  // console.log(params.page);
   axios.get(MAIN_API_URL, {
     params
   })
   .then(response => {
-    console.log(params);
+    res.send(response.data.photos);
   })
   .catch(err => {
     res.send(err);
   });
-  res.end('Completed');
 });
 
-// app.get('*', (res) => res.send('Not found')); // catch all for get requests.
-// app.post('*', (res) => res.send('Not found')); // catch all for post requests.
+app.get('*', (res) => res.send('Not found')); // catch all for get requests.
+app.post('*', (res) => res.send('Not found')); // catch all for other post requests.
 
 app.listen(PORT, () => console.log(`Server listening at port ${PORT}...`));
 

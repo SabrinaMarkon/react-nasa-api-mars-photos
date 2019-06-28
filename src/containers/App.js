@@ -82,9 +82,8 @@ export default class App extends Component {
     }
     axios.post(API_URL, params) // Express endpoint.
     .then(res => {
-      let searchResults = res.data.photos;
+      let searchResults = res.data;
       if (searchResults && searchResults.length) {
-        // console.log(res.data + ' COB');
         // We can get the max_sol (last day the rover has been active so far) from the first returned record.
         let max_sol = searchResults[0].rover.max_sol;
         searchResults = Array.from(searchResults);
@@ -95,7 +94,6 @@ export default class App extends Component {
         });
         return;
       } else {
-        // console.log(res.data + ' SQUEEBZ');
         this.setState({
           searchResults: [],
           max_sol: DEFAULT_MAX_SOL,
@@ -131,6 +129,7 @@ export default class App extends Component {
   }
 
   render() {
+    // console.log(this.state.max_sol);
     return (
       <>
         <div className="content">
