@@ -13,13 +13,14 @@ export default class Result extends Component {
     this.handleToggleModal = this.handleToggleModal.bind(this);
   }
 
-  componentDidMount() {
-    // Check that the Result component is loaded before updating state.
-    this._isMounted = true;
-  }
-  
+  /* Clear the setTimeout subscription for handleLeave() (shine on cards) so we don't get this:
+  Warning: Can’t call setState (or forceUpdate) on an unmounted component. 
+  This is a no-op, but it indicates a memory leak in your application. 
+  To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method. */
   componentWillUnmount() {
-    this._isMounted = false;
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
   }
 
   handleHover() {
@@ -29,7 +30,7 @@ export default class Result extends Component {
   }
 
   handleLeave() {
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       this.setState({
         shineclass: ''
       });
