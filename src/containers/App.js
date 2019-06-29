@@ -21,17 +21,10 @@ export default class App extends Component {
       currentPage: 0,
       totalPages: 0
     }
-    // this.getYesterdaysDate = this.getYesterdaysDate.bind(this);
     this.getTodaysDate = this.getTodaysDate.bind(this);
     this.doSearch = this.doSearch.bind(this);
     this.onPageChanged = this.onPageChanged.bind(this);
   }
-
-  // getYesterdaysDate() {
-  //   let date = new Date();
-  //   date.setDate(date.getDate()-1);
-  //   return date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
-  // }
 
   getTodaysDate() {
     let date = new Date();
@@ -51,10 +44,9 @@ export default class App extends Component {
   }
 
   doSearch(cameraInput, solInput) {    
-    // let yesterday = this.getYesterdaysDate();
     let today = this.getTodaysDate();
     let params = {};
-    // Default search URL: use yesterday's date with all cameras for the default search. More likely to have photos yesterday if today isn't long past midnight.
+    // Default search URL.
     params = {
       earth_date: today,
       page: 1
@@ -132,6 +124,7 @@ export default class App extends Component {
       searchResults,
       totalPages
     });
+    return;
   }
 
   render() {
