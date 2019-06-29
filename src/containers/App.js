@@ -9,7 +9,6 @@ import ParticleContainer from '../containers/ParticleContainer';
 import axios from 'axios';
 
 const API_URL = 'http://localhost:3000/api';
-const DEFAULT_MAX_SOL = 2444;
 
 export default class App extends Component {
 
@@ -17,19 +16,26 @@ export default class App extends Component {
     super(props);
     this.state = {
       searchResults: [],
-      max_sol: DEFAULT_MAX_SOL,
+      max_sol: '',
       errorMessage: '',
       currentPage: 0,
       totalPages: 0
     }
-    this.getYesterdaysDate = this.getYesterdaysDate.bind(this);
+    // this.getYesterdaysDate = this.getYesterdaysDate.bind(this);
+    this.getTodaysDate = this.getTodaysDate.bind(this);
     this.doSearch = this.doSearch.bind(this);
     this.onPageChanged = this.onPageChanged.bind(this);
   }
 
-  getYesterdaysDate() {
+  // getYesterdaysDate() {
+  //   let date = new Date();
+  //   date.setDate(date.getDate()-1);
+  //   return date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
+  // }
+
+  getTodaysDate() {
     let date = new Date();
-    date.setDate(date.getDate()-1);
+    date.setDate(date.getDate());
     return date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
   }
   
@@ -45,11 +51,12 @@ export default class App extends Component {
   }
 
   doSearch(cameraInput, solInput) {    
-    let yesterday = this.getYesterdaysDate();
+    // let yesterday = this.getYesterdaysDate();
+    let today = this.getTodaysDate();
     let params = {};
     // Default search URL: use yesterday's date with all cameras for the default search. More likely to have photos yesterday if today isn't long past midnight.
     params = {
-      earth_date: yesterday,
+      earth_date: today,
       page: 1
     }
     if (solInput) {
@@ -96,7 +103,6 @@ export default class App extends Component {
       } else {
         this.setState({
           searchResults: [],
-          max_sol: DEFAULT_MAX_SOL,
           errorMessage: 'No Results Found'
         });
         return;
@@ -105,7 +111,7 @@ export default class App extends Component {
     .catch(err => { 
       this.setState({
         searchResults: [],
-        max_sol: DEFAULT_MAX_SOL,
+
         errorMessage: err,
         currentPage: 0,
         totalPages: 0
@@ -129,7 +135,6 @@ export default class App extends Component {
   }
 
   render() {
-    // console.log(this.state.max_sol);
     return (
       <>
         <div className="content">

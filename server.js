@@ -32,9 +32,11 @@ app.post('/api', (req, res) => {
   })
   .then(response => {
     res.send(response.data.photos);
+    return;
   })
   .catch(err => {
     res.send(err);
+    return;
   });
 });
 
