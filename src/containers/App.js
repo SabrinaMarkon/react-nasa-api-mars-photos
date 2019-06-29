@@ -103,7 +103,6 @@ export default class App extends Component {
     .catch(err => { 
       this.setState({
         searchResults: [],
-
         errorMessage: err,
         currentPage: 0,
         totalPages: 0
