@@ -21,6 +21,7 @@ app.post('/api', (req, res) => {
 
   // Our parameters (which might vary in their existence depending on the search or default search) we need to send to the remote API are in req.body.
   params = req.body;
+  
   axios.get(MAIN_API_URL, {
     params
   })

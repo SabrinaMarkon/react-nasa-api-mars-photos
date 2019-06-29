@@ -21,34 +21,32 @@ export default class App extends Component {
       currentPage: 0,
       totalPages: 0
     }
-    this.getTodaysDate = this.getTodaysDate.bind(this);
+    this.getEarthDate = this.getEarthDate.bind(this);
     this.doSearch = this.doSearch.bind(this);
     this.onPageChanged = this.onPageChanged.bind(this);
   }
 
-  getTodaysDate() {
+  getEarthDate(day) {
     let date = new Date();
-    date.setDate(date.getDate());
+    if (day === 'today') {
+
+    } else {
+      date.setDate(date.getDate() - 1);
+    }
     return date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
   }
   
   componentDidMount() {
-    this._isMounted = true;
-    if (this._isMounted) {
-      this.doSearch('', '');
-    }
-  }
-  
-  componentWillUnmount() {
-    this._isMounted = false;
+    this.doSearch('', '');
   }
 
-  doSearch(cameraInput, solInput) {    
-    let today = this.getTodaysDate();
+  doSearch(cameraInput, solInput) {   
+    // let today = this.getEarthDate('today');
+    let yesterday = this.getEarthDate('yesterday');
     let params = {};
     // Default search URL.
     params = {
-      earth_date: today,
+      earth_date: yesterday,
       page: 1
     }
     if (solInput) {
@@ -82,6 +80,7 @@ export default class App extends Component {
     axios.post(API_URL, params) // Express endpoint.
     .then(res => {
       let searchResults = res.data;
+      // console.log(searchResults);
       if (searchResults && searchResults.length) {
         // We can get the max_sol (last day the rover has been active so far) from the first returned record.
         let max_sol = searchResults[0].rover.max_sol;
