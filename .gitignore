@@ -62,3 +62,7 @@ typings/
 
 # backup folder
 backup/
+
+# AWS notes.
+AWS-EC2-Connect.txt
+
