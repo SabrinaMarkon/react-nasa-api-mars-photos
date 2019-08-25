@@ -17,25 +17,18 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-function getYesterdaysDate() {
-  let date = new Date();
-  date.setDate(date.getDate()-1);
-  return date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
-}
-
 app.post('/api', (req, res) => {
-
-  // Our parameters (which might vary in their existence depending on the search or default search) we need to send to the remote API are in req.body.
-  params = req.body;
-  axios.get(MAIN_API_URL, {
-    params
-  })
-  .then(response => {
-    res.send(response.data.photos);
-  })
-  .catch(err => {
-    res.send(err);
-  });
+    // Our parameters (which might vary in their existence depending on the search or default search) we need to send to the remote API are in req.body.
+    const params = req.body;
+    axios.get(MAIN_API_URL, {
+        params
+    })
+        .then(response => {
+            res.send(response.data.photos);
+        })
+        .catch(err => {
+            res.send(err);
+        });
 });
 
 app.get('*', (res) => res.send('Not found')); // catch all for get requests.
