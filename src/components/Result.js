@@ -54,10 +54,11 @@ export default class Result extends Component {
 
     render () {
         const row = this.props.row;
+        let imgSrc = row['img_src'].replace('http', 'https');
         return (
             <div className="grid-item-wrapper" onMouseOver={this.handleHover} onMouseLeave={this.handleLeave}>
                 <figure className="grid-item">
-                    <img id={`image-${row['id']}`} src={row['img_src']} className="photo"
+                    <img id={`image-${row['id']}`} src={imgSrc} className="photo"
                         alt={row['img_src']} onClick={() => {this.handleToggleModal(row);}} />
                     {this.state.shineclass === 'shine' &&
             <div className="shine" />
