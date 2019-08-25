@@ -130,10 +130,10 @@ export default class App extends Component {
   render () {
       // console.log(this.state.maxSol);
       return (
-      <>
-        <div className="content">
-            <Header />
-            {this.state.errorMessage ?
+          <React.StrictMode>
+              <div className="content">
+                  <Header />
+                  {this.state.errorMessage ?
             <>
               <UserMessage userMessage={this.state.errorMessage} />
               <Search doSearch={this.doSearch} maxSol={this.state.maxSol} />
@@ -142,13 +142,13 @@ export default class App extends Component {
               <Search doSearch={this.doSearch} maxSol={this.state.maxSol} />
               <ResultsContainer searchResults={this.state.searchResults} />
               </>
-            }
-            {/* <Pagination totalRecords={1000} pageLimit={PAGE_LIMIT}
+                  }
+                  {/* <Pagination totalRecords={1000} pageLimit={PAGE_LIMIT}
             pageNeighbours={2} onPageChanged={this.onPageChanged} /> */}
-        </div>
-        <Footer />
-        <ParticleContainer />
-      </>
+              </div>
+              <Footer />
+              <ParticleContainer />
+          </React.StrictMode>
       );
   }
 }
