@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Search extends Component {
     constructor (props) {
@@ -17,7 +18,7 @@ export default class Search extends Component {
       let originalSolInput = solInput;
       solInput = originalSolInput.replace(/\D/g, '');
       if (solInput < 0 || solInput > this.props.maxSol || solInput !== originalSolInput) {
-          solInput = this.props.max_sol;
+          solInput = this.props.maxSol;
       }
       this.setState({
           solInput
@@ -76,3 +77,8 @@ export default class Search extends Component {
       );
   }
 }
+
+Search.propTypes = {
+    maxSol: PropTypes.number,
+    doSearch: PropTypes.func
+};

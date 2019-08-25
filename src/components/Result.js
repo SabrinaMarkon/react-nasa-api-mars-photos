@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Result extends Component {
     constructor (props) {
@@ -77,3 +78,7 @@ export default class Result extends Component {
         );
     }
 }
+
+Result.propTypes = {
+    row: PropTypes.object
+};
