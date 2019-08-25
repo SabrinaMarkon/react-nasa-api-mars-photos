@@ -54,7 +54,7 @@ export default class Result extends Component {
 
     render () {
         const row = this.props.row;
-        let imgSrc = row['img_src'].replace('http', 'https');
+        let imgSrc = row['img_src'].replace('http://', 'https://');
         return (
             <div className="grid-item-wrapper" onMouseOver={this.handleHover} onMouseLeave={this.handleLeave}>
                 <figure className="grid-item">

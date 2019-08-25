@@ -9,7 +9,7 @@ import ParticleContainer from '../containers/ParticleContainer';
 import axios from 'axios';
 
 const API_URL = 'http://localhost:3000/api';
-const DEFAULT_MAX_SOL = 2444;
+const DEFAULT_MAX_SOL = 2222;
 
 export default class App extends Component {
     constructor (props) {
