@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 export default function UserMessage (props) {
     let userMessage = props.userMessage;
-    if (props.userMessage.length > 1) {
-        userMessage = 'No Results Found';
+    if (typeof userMessage === 'object') {
+        userMessage = props.userMessage.message;
     }
     return (
         <div className="user-message">{userMessage}</div>
