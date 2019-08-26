@@ -60,7 +60,10 @@ export default class App extends Component {
                 // user included weird characters the server doesn't accept.
                 this.setState({
                     searchResults: [],
-                    errorMessage: 'Special characters are not allowed except (space, comma, decimal, dash, apostrophe).'
+                    camera: cameraInput,
+                    errorMessage:
+                    'Special characters are not allowed except (space, comma, decimal, dash, apostrophe).',
+                    page: 1
                 });
                 return;
             }
@@ -75,6 +78,7 @@ export default class App extends Component {
             } else {
                 params = {
                     sol: solInput,
+                    camera: cameraInput,
                     page: 1
                 };
             }

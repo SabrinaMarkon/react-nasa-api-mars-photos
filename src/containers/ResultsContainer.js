@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Result from '../components/Result';
+import PropTypes from 'prop-types';
 
 export default class ResultsContainer extends Component {
     render () {
@@ -17,3 +18,7 @@ export default class ResultsContainer extends Component {
         );
     }
 }
+
+ResultsContainer.propTypes = {
+    searchResults: PropTypes.array
+};
