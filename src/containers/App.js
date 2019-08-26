@@ -9,7 +9,7 @@ import ParticleContainer from '../containers/ParticleContainer';
 import axios from 'axios';
 
 const API_URL = 'http://localhost:3000/api';
-const DEFAULT_MAX_SOL = 2222;
+const DEFAULT_MAX_SOL = 2504;
 
 export default class App extends Component {
     constructor (props) {
@@ -29,7 +29,7 @@ export default class App extends Component {
     componentDidMount () {
         this._isMounted = true;
         if (this._isMounted) {
-            this.doSearch('', '');
+            this.doSearch('', DEFAULT_MAX_SOL);
         }
     }
 
@@ -60,10 +60,7 @@ export default class App extends Component {
                 // user included weird characters the server doesn't accept.
                 this.setState({
                     searchResults: [],
-                    camera: cameraInput,
-                    errorMessage:
-                    'Special characters are not allowed except (space, comma, decimal, dash, apostrophe).',
-                    page: 1
+                    errorMessage: 'Special characters are not allowed except (space, comma, decimal, dash, apostrophe).'
                 });
                 return;
             }
@@ -78,7 +75,6 @@ export default class App extends Component {
             } else {
                 params = {
                     sol: solInput,
-                    camera: cameraInput,
                     page: 1
                 };
             }

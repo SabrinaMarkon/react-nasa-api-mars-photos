@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Testing the SearchContainer component renders the SearchContainer box 1`] = `
-<div>
-  <Search
-    doSearch={[Function]}
-  />
-</div>
-`;

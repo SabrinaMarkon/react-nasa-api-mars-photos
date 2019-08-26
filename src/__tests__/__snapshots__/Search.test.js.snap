@@ -1,17 +1,94 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Testing search form component should match the Search form snapshot 1`] = `
-<form>
-  <input
-    onChange={[Function]}
-    type="text"
-    value=""
-  />
-  <button
-    onClick={[Function]}
-    type="button"
+<form
+  className="flex center-align pt-2"
+>
+  <div
+    className="flex-item pt-0"
   >
-    Search!
-  </button>
+    <label
+      className="searchlabel"
+      htmlFor="cameraInput"
+    >
+      Camera:
+    </label>
+    <select
+      className="form-input"
+      name="cameraInput"
+      onChange={[Function]}
+      value=""
+    >
+      <option
+        value=""
+      >
+        Any and All!
+      </option>
+      <option
+        value="fhaz"
+      >
+        Front Hazard Avoidance Camera (FHAZ)
+      </option>
+      <option
+        value="rhaz"
+      >
+        Rear Hazard Avoidance Camera (RHAZ)
+      </option>
+      <option
+        value="mast"
+      >
+        Mast Camera (MAST)
+      </option>
+      <option
+        value="chemcam"
+      >
+        Chemistry and Camera Complex (CHEMCAM)
+      </option>
+      <option
+        value="mahli"
+      >
+        Mars Hand Lens Imager (MAHLI)
+      </option>
+      <option
+        value="mardi"
+      >
+        Mars Descent Imager (MARDI)
+      </option>
+      <option
+        value="navcam"
+      >
+        Navigation Camera (NAVCAM)
+      </option>
+    </select>
+  </div>
+  <div
+    className="flex-item pt-0"
+  >
+    <label
+      className="searchlabel pl-0"
+      htmlFor="solInput"
+    >
+      Sol:
+    </label>
+    <input
+      className="form-input"
+      id="solInput"
+      name="solInput"
+      onChange={[Function]}
+      size="4"
+      type="text"
+    />
+  </div>
+  <div
+    className="flex-item pt-0"
+  >
+    <button
+      className="form-input"
+      onClick={[Function]}
+      type="button"
+    >
+      Find Photos!
+    </button>
+  </div>
 </form>
 `;

@@ -1,13 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Testing main App container it should match the App snapshot 1`] = `
-<Fragment>
-  <Nav />
-  <Header />
-  <SearchContainer
-    doSearch={[Function]}
-  />
-  <ResultsContainer />
+<StrictMode>
+  <div
+    className="content"
+  >
+    <Header />
+    <Search
+      doSearch={[Function]}
+      maxSol={2222}
+    />
+    <ResultsContainer
+      searchResults={Array []}
+    />
+  </div>
   <Footer />
-</Fragment>
+  <ParticleContainer />
+</StrictMode>
 `;
