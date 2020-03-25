@@ -8,11 +8,6 @@ import ResultsContainer from '../containers/ResultsContainer';
 import Footer from '../components/Footer';
 import ParticleContainer from '../containers/ParticleContainer';
 
-// We need to get environmental variables from .env.
-// const dotenv = require('dotenv');
-// dotenv.config();
-// const API_KEY = process.env.REACT_APP_NASA_API_KEY;
-// const MAIN_API_URL = 'https://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos?api_key=' + API_KEY;
 const MAIN_API_URL = 'https://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos';
 const DEFAULT_MAX_SOL = 2504;
 
@@ -51,7 +46,8 @@ export default class App extends Component {
     doSearch (cameraInput, solInput) {
         let yesterday = this.getYesterdaysDate();
         let params = {};
-        // Default search URL: use yesterday's date with all cameras for the default search. More likely to have photos yesterday if today isn't long past midnight.
+        // Default search URL: use yesterday's date with all cameras for the default search.
+        // More likely to have photos yesterday if today isn't long past midnight.
         params = {
             earth_date: yesterday,
             page: 1
