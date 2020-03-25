@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Header from '../components/Header';
 import UserMessage from '../components/UserMessage';
 import Search from '../components/Search';
@@ -6,9 +7,13 @@ import ResultsContainer from '../containers/ResultsContainer';
 // import Pagination from '../components/Pagination';
 import Footer from '../components/Footer';
 import ParticleContainer from '../containers/ParticleContainer';
-import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api';
+// We need to get environmental variables from .env.
+// const dotenv = require('dotenv');
+// dotenv.config();
+// const API_KEY = process.env.REACT_APP_NASA_API_KEY;
+// const MAIN_API_URL = 'https://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos?api_key=' + API_KEY;
+const MAIN_API_URL = 'https://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos';
 const DEFAULT_MAX_SOL = 2504;
 
 export default class App extends Component {
@@ -79,9 +84,9 @@ export default class App extends Component {
                 };
             }
         }
-        axios.post(API_URL, params) // Express endpoint.
+        axios.get(MAIN_API_URL, { params })
             .then(res => {
-                let searchResults = res.data;
+                let searchResults = res.data.photos;
                 if (searchResults && searchResults.length) {
                     // We can get the max_sol (last day the rover has been active so far) from the first returned record.
                     let maxSol = searchResults[0].rover.max_sol;
