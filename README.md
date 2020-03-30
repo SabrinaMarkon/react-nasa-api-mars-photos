@@ -10,3 +10,4 @@ TODO:
 - Pagination
 - Memoization
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/cd8f5c85-e170-4087-a610-bbbaf3d1c8ff/deploy-status)](https://app.netlify.com/sites/sabrinamarkon-react-nasa-api-mars-photos/deploys)
