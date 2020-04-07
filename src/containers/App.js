@@ -114,43 +114,43 @@ export default class App extends Component {
             });
     }
 
-  /* Called with data of the current pagination state only when the current page changes. */
-  onPageChanged = data => {
-      let { searchResults } = this.state;
-      const { currentPage, totalPages, pageLimit } = data;
-      /* -1 to make it zero based */
-      const offset = (currentPage - 1) * pageLimit;
-      searchResults = searchResults.slice(offset, offset + pageLimit);
-      this.setState({
-          currentPage,
-          searchResults,
-          totalPages
-      });
-  }
+    /* Called with data of the current pagination state only when the current page changes. */
+    //   onPageChanged = data => {
+    //       let { searchResults } = this.state;
+    //       const { currentPage, totalPages, pageLimit } = data;
+    //       /* -1 to make it zero based */
+    //       const offset = (currentPage - 1) * pageLimit;
+    //       searchResults = searchResults.slice(offset, offset + pageLimit);
+    //       this.setState({
+    //           currentPage,
+    //           searchResults,
+    //           totalPages
+    //       });
+    //   }
 
-  render () {
-      // console.log(this.state.maxSol);
-      return (
-          <React.StrictMode>
-              <div className="content">
-                  <Header />
-                  {this.state.errorMessage ?
-            <>
-              <UserMessage userMessage={this.state.errorMessage} />
-              <Search doSearch={this.doSearch} maxSol={this.state.maxSol} />
-              </> :
-            <>
-              <Search doSearch={this.doSearch} maxSol={this.state.maxSol} />
-              <ResultsContainer searchResults={this.state.searchResults} />
-              </>
-                  }
-                  {/* <Pagination totalRecords={1000} pageLimit={PAGE_LIMIT}
-            pageNeighbours={2} onPageChanged={this.onPageChanged} /> */}
-              </div>
-              <Footer />
-              <ParticleContainer />
-          </React.StrictMode>
-      );
-  }
+    render () {
+        // console.log(this.state.maxSol);
+        return (
+            <React.StrictMode>
+                <div className="content">
+                    <Header />
+                    {this.state.errorMessage ?
+                <>
+                <UserMessage userMessage={this.state.errorMessage} />
+                <Search doSearch={this.doSearch} maxSol={this.state.maxSol} />
+                </> :
+                <>
+                <Search doSearch={this.doSearch} maxSol={this.state.maxSol} />
+                <ResultsContainer searchResults={this.state.searchResults} />
+                </>
+                    }
+                    {/* <Pagination totalRecords={1000} pageLimit={PAGE_LIMIT}
+                pageNeighbours={2} onPageChanged={this.onPageChanged} /> */}
+                </div>
+                <Footer />
+                <ParticleContainer />
+            </React.StrictMode>
+        );
+    }
 }
 
