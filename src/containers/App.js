@@ -8,7 +8,7 @@ import ResultsContainer from '../containers/ResultsContainer';
 import Footer from '../components/Footer';
 import ParticleContainer from '../containers/ParticleContainer';
 
-const MAIN_API_URL = 'https://mars-photos.herokuapp.com/api/v1/rovers/curiosity/photos';
+const MAIN_API_URL = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos';
 const DEFAULT_MAX_SOL = 2504;
 
 export default class App extends Component {
